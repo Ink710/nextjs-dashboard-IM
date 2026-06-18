@@ -1,4 +1,4 @@
-import { CheckIcon, ClockIcon } from '@heroicons/react/24/outline';
+import { CheckIcon, ClockIcon, DocumentIcon, ExclamationCircleIcon } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
 
 export default function InvoiceStatus({ status }) {
@@ -9,6 +9,9 @@ export default function InvoiceStatus({ status }) {
         {
           'bg-gray-100 text-gray-500': status === 'pending',
           'bg-green-500 text-white': status === 'paid',
+          'bg-red-500 text-white': status === 'late',
+          'bg-slate-200 text-slate-600': status === 'draft',
+          'bg-amber-500 text-white': status === 'overdue',
         },
       )}
     >
@@ -22,6 +25,24 @@ export default function InvoiceStatus({ status }) {
         <>
           Paid
           <CheckIcon className="ml-1 w-4 text-white" />
+        </>
+      ) : null}
+      {status === 'late' ? (
+        <>
+          Late
+          <ClockIcon className="ml-1 w-4 text-white" />
+        </>
+      ) : null}
+      {status === 'draft' ? (
+        <>
+          Draft
+          <DocumentIcon className="ml-1 w-4 text-slate-600" />
+        </>
+      ) : null}
+      {status === 'overdue' ? (
+        <>
+          Overdue
+          <ExclamationCircleIcon className="ml-1 w-4 text-white" />
         </>
       ) : null}
     </span>
